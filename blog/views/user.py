@@ -3,6 +3,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 import sys
+import json
 
 from models.user import User, Token
 
@@ -17,6 +18,7 @@ class ReadUser(ListView):
 
 class CreateUser(CreateView):
     def post(self, request):
+        data = json.loads(request.body)
         return HttpResponse('create')
 
 class UserLogin(UpdateView):

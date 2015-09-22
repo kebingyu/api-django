@@ -35,11 +35,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'corsheaders',
     'blog',
 )
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 MIDDLEWARE_CLASSES = (
-    'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 )
 
 ROOT_URLCONF = 'django_blog.urls'

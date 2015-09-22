@@ -5,7 +5,10 @@
 
 ## Install
 
-* Use `pip` to install packages: `pip install Django` and `pip install mongoengine`.
+* Use `pip` to install following packages: 
+  * `pip install Django`
+  * `pip install mongoengine`
+  * `pip install django-cors-headers`
 * To start the server, run `python manage.py runserver`.
 * Go to Mongo shell and run `use simple_blog` to create the database.
 
