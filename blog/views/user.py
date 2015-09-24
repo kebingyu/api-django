@@ -6,6 +6,7 @@ import sys
 import json
 
 from models.user import User, Token
+from validator import Validator
 
 class ReadUser(ListView):
     def get(self, request, key):
@@ -18,8 +19,20 @@ class ReadUser(ListView):
 
 class CreateUser(CreateView):
     def post(self, request):
-        data = json.loads(request.body)
-        return HttpResponse('create')
+        if (request.body == ''):
+            data = {}
+        else:
+            data = json.loads(request.body) 
+        errors = Validator.validate(data, {
+            'username' : 'required',
+            'email' : 'required|email',
+            'password' : 'required',
+        })
+        if (errors):
+            message = {"error": errors}
+        else:
+            message = {"success": True}
+        return HttpResponse(dumps(message))
 
 class UserLogin(UpdateView):
     def post(self, request):
