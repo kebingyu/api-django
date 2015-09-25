@@ -22,16 +22,17 @@ class CreateUser(CreateView):
         if (request.body == ''):
             data = {}
         else:
-            data = json.loads(request.body) 
+            data = json.loads(request.body)
+
         errors = Validator.validate(data, {
-            'username' : 'required',
-            'email' : 'required|email',
-            'password' : 'required',
+            'username' : 'required|max:20',
+            'email'    : 'required|email',
+            'password' : 'required|min:6|confirmed',
         })
         if (errors):
             message = {"error": errors}
         else:
-            message = {"success": True}
+            message = User.new(data)
         return HttpResponse(dumps(message))
 
 class UserLogin(UpdateView):

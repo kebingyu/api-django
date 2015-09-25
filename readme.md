@@ -9,6 +9,7 @@
   * `pip install Django`
   * `pip install mongoengine`
   * `pip install django-cors-headers`
+  * `pip install bcrypt` (might need to install libffi onto your os)
 * To start the server, run `python manage.py runserver`.
 * Go to Mongo shell and run `use simple_blog` to create the database.
 
